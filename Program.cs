@@ -1,7 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+var connectionString = builder.Configuration.GetConnectionString("DBContext");
+var serverVersion = new MariaDbServerVersion(builder.Configuration.GetValue<string>("DBMSVersion"));
+
+builder.Services.AddDbContext<DBContext>(options =>
+// options.UseMySql(connectionString, serverVersion));
+
+
+
+// builder.Services.AddDbContext<DBContext>(options =>
+// // options.UseSqlServer(builder.Configuration.GetConnectionString("DBContext")));
+// 
+options.UseLazyLoadingProxies().UseMySql(connectionString, serverVersion));
 
 var app = builder.Build();
 

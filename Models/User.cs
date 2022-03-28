@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace razor_page_lab3;
+namespace razor_page_lab3.Models;
 
 public class User
 {
@@ -20,7 +20,7 @@ public class User
 
     public string? StreetName { get; set; }
 
-    [RegularExpression(@"^[A-Za-z][0-9][A-Za-z]【 】*[0-9][A-Za-z][0-9]$", ErrorMessage = "Please type valide postalcode!")]
+    [RegularExpression(@"^[A-Za-z][0-9][A-Za-z][ ]*[0-9][A-Za-z][0-9]$", ErrorMessage = "Please type valide postalcode!")]
     public string? Postalcode { get; set; }
     [Required]
     public string? City { get; set; }
